@@ -1,23 +1,18 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <random>
 #include "bib.h"
 
+int sapos::pulo(){
+	int quantidade_de_pulos = 6;
+	//int tamanho = distancia_total;
 
-
-int sapos::calcularDistancia(){
-	int total_de_pulos = 0;
-	while(quantidade_de_pulos>=quantidade_puladas){
-		total_de_pulos += quantidade_puladas;
+	/*while(tamanho>0){
+		tamanho -= distancia_percorrida;
+		quantidade_de_pulos ++;
 	}
-
-	return total_de_pulos;
-}
-void sapos::SetIdentidicador(int indentificador_){
-	indentificador = indentificador_;
+*/
+	return quantidade_de_pulos;
 }
 
-int sapos::GetIdentificador(){
-	return indentificador;
+sapos::sapos(int Identificador_construtor, int maximo_do_pulo_){
+	identificador = Identificador_construtor;
+	maximo_do_pulo = maximo_do_pulo_;
 }

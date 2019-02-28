@@ -1,20 +1,21 @@
-#include <stdio.h>
+#include <iostream>
 #include "bib.h"
-#include <random>
+
+
+using namespace std;
+
+int sapos::distancia_total = 100;
+
 int main(){
-	sapos andre;
-	sapos elyton;
-	sapos lucas;
+	sapos andre(1,5);
+	sapos elyton(2,5);
+	sapos lucas(3,5);
 
-	andre.setIdentificador(1);
-	elyton.setIdentificador(2);
-	lucas.setIdentificador(3);
 
-	sapos::maximo = 100;
-
-	cout<<"Quantiade de pulos de elyton:"<<elyton.CalcularDistancia()<<endl;
-	cout<<"Quantiade de pulos de Andre:"<<andre.CalcularDistancia()<<endl;
-	cout<<"Quantiade de pulos de lucas:"<<lucas.CalcularDistancia()<<endl;
+	
+	cout<<"Quantidade de pulos de elyton:"<<elyton.pulo()<<endl;
+	cout<<"Quantidade de pulos de Andre:"<<andre.pulo()<<endl;
+	cout<<"Quantidade de pulos de lucas:"<<lucas.pulo()<<endl;
 
 	return 0;
 

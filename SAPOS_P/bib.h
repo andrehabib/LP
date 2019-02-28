@@ -1,6 +1,6 @@
 #ifndef BIB_H
 #define BIB_H
-
+#include<iostream>
 #include <random>
 
 using namespace std;
@@ -8,16 +8,13 @@ using namespace std;
 class sapos{
 private:
 	int identificador;
-	static int maximo;
-	int quantidade_de_pulos = (rand()%6)+1;
-	int distancia_percorrida = 1 + rand()%maximo;
+	int maximo_do_pulo;
+	int distancia_percorrida;
 
 public:
-	int calcularDistancia();
-	void SetIdentidicador(int indentificador_);
-	int GetIdentificador();
-
-
+	static int distancia_total;
+	int pulo();
+	sapos(int, int );
 
 };
 
