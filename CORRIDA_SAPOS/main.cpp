@@ -12,6 +12,7 @@ int main() {
 
 	unsigned int i= 0; // iterador para o vetor de sapos
 	int vencedor = 0; // posição no vetor de sapos do vencedor da corrida.
+	int marcadordepulo= 1; //marcar o número do pulo durante a corrida 
 
 	//Cria participantes
 	Sapo roberto("Roberto",0,0);
@@ -44,6 +45,7 @@ int main() {
 		}
 		
 		std::cout << vetorDeSapo[i].getIdentificador() << std::endl;
+		
 
 		for (int j = 0; j < (Sapo::distanciaTotalDaCorrida -1); ++j) {
 		 	std::cout << "." ;
@@ -58,6 +60,10 @@ int main() {
 			std::cout << "____________________________________________________" <<  std::endl << std::endl;
 			std::this_thread::sleep_for (std::chrono::seconds(1));
 			i = 0;
+
+			std::cout << ">>> Etapa: " <<marcadordepulo<<std::endl;
+			marcadordepulo += 1;
+
 			continue;
 		}
 		i++; 

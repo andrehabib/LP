@@ -17,7 +17,7 @@ class Sapo{
 
 		//Quantidade de pulos dados.
 		int qtdDePulosDados;
-
+		
 		
 
 		
