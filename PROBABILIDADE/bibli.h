@@ -20,13 +20,13 @@ class Dado {
 		Dado( int Menor = 1, int Maior = 6 ) : 
 			Randomizador (), 
 			Gerador ( Randomizador() ), 
-			Distribuicao ( Menor, Maior )
+			Distribuicao ( Menor, Maior+1 )
 		{ /* Vazio */ }
 
 		//Retorna um número aleatório no intervalo de distribuição
 		int aleatorio()
 		{
-			return std::round( Distribuicao(Gerador) );
+			return std::floor( Distribuicao(Gerador) );
 		}
 };
 
