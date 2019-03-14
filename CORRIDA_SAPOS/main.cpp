@@ -1,4 +1,5 @@
 #include "sapo.h"
+#include "jogo.h"
 #include <vector>
 #include <iostream>
 #include <thread>         // std::this_thread::sleep_for
@@ -10,79 +11,23 @@ int Sapo::tamanhoDoPulo = 10; // Define o tamanho do pulo máximo dos sapos.
 
 int main() {
 
-	unsigned int i= 0; // iterador para o vetor de sapos
-	int vencedor = 0; // posição no vetor de sapos do vencedor da corrida.
-	int marcadordepulo= 1; //marcar o número do pulo durante a corrida 
+	int nsapos = 0; //variavel responsavel por guaradar quantidade de sapos
 
-	//Cria participantes
-	Sapo roberto("Roberto",0,0);
-	Sapo sergio("Sergio",0,0);
-	Sapo luiz("Luiz",0,0);
+	jogo game;
 
-	std::vector<Sapo> vetorDeSapo; // inicializa o vetor de sapos 
+	std::cout<< "Quantidade de sapos da corrida:" << std::endl; // pedindo quantiade de sapos
+	std::cin >> nsapos; // recebendo variavel
 
-	//Armazena participantes no vetor
-	vetorDeSapo.emplace_back(roberto);
-	vetorDeSapo.emplace_back(sergio);
-	vetorDeSapo.emplace_back(luiz);
+	std::string vetornome[nsapos]; // vetor com os nome dos sapos que seu tamanho é determinado pelo 
 
-	for (int k = 3; k > 0 ; --k){
-		std::cout << "       " << k << std::endl << std::endl;
-		std::this_thread::sleep_for (std::chrono::seconds(1));
-	}
-	std::cout << "       P U L E M!" << std::endl << std::endl << std::endl;
-	std::this_thread::sleep_for (std::chrono::seconds(1));
-
-	while( true ) {
-
-		 vetorDeSapo[i].pular() ;// vetorDeSapo[i].pular(); Faz o sapo da posĩção atual pular.
-
-		
-		//Verifica se o sapo da posição atual, chegou ao final da corrida. Se sim, o looping encerra. 
-		if(vetorDeSapo[i].getDistanciaPercorrida() >= Sapo::getDistanciaTotalDaCorrida()){
-			vencedor = i; //Guarda a posição do vencedor.	
-			break;
-		}
-		
-		std::cout << vetorDeSapo[i].getIdentificador() << std::endl;
-		
-
-		for (int j = 0; j < (Sapo::distanciaTotalDaCorrida -1); ++j) {
-		 	std::cout << "." ;
-		 	if(j == vetorDeSapo[i].getDistanciaPercorrida())
-		 		std::cout << "O" ;
-		}
-		std::cout << "P" << std::endl << std::endl;
-
-		if(i == (vetorDeSapo.size() -1)){ // Reseta o iterador.
-			
-			std::cout << "_________________________________________________________________________";
-			std::cout << "____________________________________________________" <<  std::endl << std::endl;
-			std::this_thread::sleep_for (std::chrono::seconds(1));
-			i = 0;
-
-			std::cout << ">>> Etapa: " <<marcadordepulo<<std::endl;
-			marcadordepulo += 1;
-
-			continue;
-		}
-		i++; 
+	for (int i = 0; i < nsapos; ++i)
+	{
+		std::cout << "Digite o nome do sapo " <<  i+1 << " :" << std::endl;
+		std::cin >> vetornome[i];
+		game.adicionarSapo(vetornome[i]); 
 	}
 
-	std::cout << std::endl << std::endl << std::endl <<"--------------------------------------------------";
-	std::cout << " ----------------------------------------------------------------------" << std::endl;
-	std::cout << "                                             F I M   D A   C O R R I D A      " << std::endl;
-	std::cout << "------------------------------------------------------------";
-	std::cout << "------------------------------------------------------------" << std::endl;
+	game.rodar();
 
-
-	//Mostra o resultado da corrida.
-	std::cout << ">>>  Vencedor: " <<  vetorDeSapo[vencedor].getIdentificador() << std::endl;
-	std::cout << ">>>  Pulos dados: " <<  vetorDeSapo[vencedor].getQtdDePulosDados() << std::endl;
-	std::cout << ">>>  Distancia Percorrida: " << vetorDeSapo[vencedor].getDistanciaPercorrida() << std::endl;
-
-
-
-
-	return 0;
+	game.mostrarVencedor();
 }

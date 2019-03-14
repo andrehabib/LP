@@ -12,6 +12,7 @@
 class jogo{
 	std::vector<Sapo> vetorDeSapo;
 	int resultado;
+	Sapo *apontadorsapo = new Sapo;
 public:
 	void adicionarSapo(std::string identificador,int distancia_percorrida = 0, int quantidade_de_pulos = 0){
 		Sapo frog(identificador,distancia_percorrida,quantidade_de_pulos);
@@ -42,8 +43,8 @@ public:
 		
 			//Verifica se o sapo da posição atual, chegou ao final da corrida. Se sim, o looping encerra. 
 			if(vetorDeSapo[i].getDistanciaPercorrida() >= Sapo::getDistanciaTotalDaCorrida()){
-
-				vencedor = i; //Guarda a posição do vencedor.	
+				apontadorsapo = &vetorDeSapo[i];
+				//vencedor = i; //Guarda a posição do vencedor.	
 				break;
 			}
 		
@@ -87,9 +88,13 @@ public:
 
 
 		//Mostra o resultado da corrida.
-		std::cout << ">>>  Vencedor: " <<  vetorDeSapo[resultado].getIdentificador() << std::endl;
-		std::cout << ">>>  Pulos dados: " <<  vetorDeSapo[resultado].getQtdDePulosDados() << std::endl;
-		std::cout << ">>>  Distancia Percorrida: " << vetorDeSapo[resultado].getDistanciaPercorrida() << std::endl;
+		//std::cout << ">>>  Vencedor: " <<  vetorDeSapo[resultado].getIdentificador() << std::endl;
+		//std::cout << ">>>  Pulos dados: " <<  vetorDeSapo[resultado].getQtdDePulosDados() << std::endl;
+		//std::cout << ">>>  Distancia Percorrida: " << vetorDeSapo[resultado].getDistanciaPercorrida() << std::endl;
+
+		std::cout << ">>>  Vencedor: " <<  apontadorsapo->getIdentificador() << std::endl;
+		std::cout << ">>>  Pulos dados: " <<  apontadorsapo->getQtdDePulosDados() << std::endl;
+		std::cout << ">>>  Distancia Percorrida: " << apontadorsapo->getDistanciaPercorrida() << std::endl;
 	}
 
 
