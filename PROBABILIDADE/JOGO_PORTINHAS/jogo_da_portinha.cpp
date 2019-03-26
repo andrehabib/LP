@@ -105,7 +105,14 @@ int main()
 
  	std::cout<<"Quantidade de vitórias com a porta trocada: " << vitoriasExperimeto2 <<std::endl;
 
-   	
+ 	std::this_thread::sleep_for (std::chrono::seconds(2));
 
+ 	std::cout<<"Fim do programa !!! "<<std::endl;
+   	
+ 	std::cout<<"Quantidade de vitórias com a porta fixa: " << vitoriasExperimeto1 <<std::endl;
+
+ 	std::this_thread::sleep_for (std::chrono::seconds(1));
+
+ 	std::cout<<"Quantidade de vitórias com a porta trocada: " << vitoriasExperimeto2 <<std::endl;
 	return 0;
 }
