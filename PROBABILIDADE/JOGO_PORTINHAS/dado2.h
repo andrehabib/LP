@@ -1,4 +1,3 @@
-
 #ifndef DADO_H
 #define DADO_H
 
@@ -37,7 +36,7 @@ class Dado {
 
 			}
 
-			return tem;
+			return aux;
 		}
 };
 
