@@ -17,6 +17,7 @@ public:
 
 	Jogo(int numeroJogador, int pontosJogador);
 
+	void acumuloDePontos(int dado1, int dado2);
 	int setPontosJogador(int pontosJogador);
 
 	void getPontosJogador();

@@ -3,6 +3,10 @@
  
 #include <random>
 #include <iostream>
+#include <utility>
+
+typedef std::pair<int, int> LancamentoDuplo;
+
  class Dado{
 
  private:
@@ -20,16 +24,20 @@
 
  	Dado();
 
- 	Dado(int menor=0, int maior=1):
+ 	Dado(int menor = 0, int maior = 1):
  			Randomizador (), 
 			Gerador ( Randomizador() ), 
-			Distribuicao ( Menor, Maior )
+			Distribuicao ( menor, maior )
 	{ /* Vazio */ }
 
 
-	int aleatorio()
+	int lancamento()
 	{
-		return std::round( Distribuicao(Gerador) );
+		return std::round( Distribuicao(Gerador) );	
+	}
+
+	LancamentoDuplo lancamento2(){
+		return LancamentoDuplo(std::make_pair(lancamento(), lancamento()));
 	}
 
  };
