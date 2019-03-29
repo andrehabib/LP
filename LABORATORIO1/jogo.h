@@ -1,26 +1,24 @@
 #ifndef jogo_h
 #define jogo_h
 
-#include "dado.h"
-#include <string>
-#include <iostream>
+#include <vector>
+#include "jogador.h"
 
 class Jogo{
 
 private:
-	int numeroJogador;
-	int pontosJogador;
+	Jogador *ponteiroJogador = new Jogador; 
+	vector<Jogador> listaDeJogadores;
 
 public:
 
-	Jogo();
+	static int valorGanhador; // vaŕiável estática
 
-	Jogo(int numeroJogador, int pontosJogador);
+	Jogo(); // construto padrão.
 
-	void acumuloDePontos(int dado1, int dado2);
-	int setPontosJogador(int pontosJogador);
+	Jogo(const Jogo &jogo); // construto cópia.
 
-	void getPontosJogador();
+	Jogo(int numeroJogador, int pontosJogador); // construto parametizado. 
 
 };
 
