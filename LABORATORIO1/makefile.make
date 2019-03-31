@@ -1,3 +1,6 @@
+S#GRUPO :ANDRÉ HABIB && LUAN ROCHA 
+
+
 PROG = jogo_do_dado
 CC = g++
 CPPFLAGS = -O0 -g -Wall -std=c++11 

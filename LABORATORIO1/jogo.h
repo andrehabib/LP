@@ -1,6 +1,6 @@
 #ifndef jogo_h
 #define jogo_h
-
+//GRUPO :ANDRÉ HABIB && LUAN ROCHA 
 #include <vector>
 #include "jogador.h"
 #include "dado.h" 

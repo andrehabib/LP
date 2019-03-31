@@ -1,6 +1,6 @@
 #ifndef dado_h
 #define dado_h
- 
+ //GRUPO :ANDRÉ HABIB && LUAN ROCHA 
 #include <random>
 #include <iostream>
 #include <utility>

@@ -3,6 +3,8 @@
 #include <chrono>
 #include "jogo.h"
 
+//GRUPO :ANDRÉ HABIB && LUAN ROCHA 
+
 void Jogo::adicionarJogador(int numeroJogador){
 	Jogador jogador(numeroJogador,0);
 	listaDeJogadores.emplace_back(jogador);
@@ -59,6 +61,7 @@ for(int i = 0; i < quantidadeJogadores; i++){
 		std::cout << "O vencedor é " << listaDeJogadores[i].getNumeroJogador() <<std::endl;	
 		std::cout << "O jogo acabou !!" <<std::endl;
 		saida_while = 5;
+		return 0;	
 		break;	
 	}	
 	
@@ -77,7 +80,9 @@ for(int i = 0; i < quantidadeJogadores; i++){
 		case 1:
 			std::cout << "O jogo acabou !!" <<std::endl;
 			saida_while = 5;
-			break;	
+			return 0;
+			break;
+			
 		case 2:
 			quantidadeJogadores --;
 			break;
