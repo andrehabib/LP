@@ -6,25 +6,25 @@
 //GRUPO :ANDRÉ HABIB && LUAN ROCHA 
 
 void Jogo::adicionarJogador(int numeroJogador){
-	Jogador jogador(numeroJogador,0);
-	listaDeJogadores.emplace_back(jogador);
+	Jogador jogador(numeroJogador,0); // chamando construtor parametizado de jogador
+	listaDeJogadores.emplace_back(jogador); //adicionando a lista
 }
 
 int Jogo::mecanica(Jogador verificarJogador){
 
-auto it = listaDeJogadores.begin();
+auto it = listaDeJogadores.begin(); // iterador apontado para o inicio da lista
 
-int numero_jogador = verificarJogador.getNumeroJogador();
+int numero_jogador = verificarJogador.getNumeroJogador(); // numero do jogador a ser excluido
 
-if(verificarJogador.getPontosJogador() == valorGanhador){
+if(verificarJogador.getPontosJogador() == valorGanhador){ // verificar se o jogador da rodada ganhou
 	std::cout << "O vencedor é " << verificarJogador.getNumeroJogador() <<std::endl;	
 	return 1;	
 }
 if(verificarJogador.getPontosJogador()  < valorGanhador){
-   std::cout << "O jogador " << verificarJogador.getNumeroJogador() << " ainda pode jogar" << std::endl;
+   std::cout << "O jogador " << verificarJogador.getNumeroJogador() << " ainda pode jogar" << std::endl; // informando que o jogador da rodada está abaixo do número mas ainda pode jogar
 }
-if (verificarJogador.getPontosJogador()  > valorGanhador){
-	std::cout << "O jogador " << verificarJogador.getNumeroJogador() << " ta fora do jogo" << std::endl;
+if (verificarJogador.getPontosJogador()  > valorGanhador){ // verifica se o jogador ultrapassou o valor para ganhar o jogo
+	std::cout << "O jogador " << verificarJogador.getNumeroJogador() << " ta fora do jogo" << std::endl; // informando que o jogador da rodada ta fora do jogo
 
 	while(it != listaDeJogadores.end()){
 	if(it->getNumeroJogador() == numero_jogador){ // no exemplo, estamos excluindo o jogador com id 3 mas se fosse uma função isso poderia sere uma variável
@@ -45,19 +45,19 @@ return 0;
 
 int Jogo::interface(int quantidadeJogadores){
 
-int controlador = 0;
+int controlador = 0; // controlador de jogar ou parar de jogar
 
-int saida_while = 0;
+int saida_while = 0; // controlador de saida
 
-Dado dados(1,6);
+Dado dados(1,6); // construto de dado para limitar os extremos
 
-LancamentoDuplo duplo = dados.lancamento2();
+LancamentoDuplo duplo = dados.lancamento2(); // criando variável do tipo LancamentoDuplo e chamando a função apra lançar os dados
 
-while(saida_while!= 5){	
+while(saida_while!= 5){	 
 
 for(int i = 0; i < quantidadeJogadores; i++){
 
-	if(quantidadeJogadores == 1){
+	if(quantidadeJogadores == 1){ // verificando se resta apenas 1 jogador 
 		std::cout << "O vencedor é " << listaDeJogadores[i].getNumeroJogador() <<std::endl;	
 		std::cout << "O jogo acabou !!" <<std::endl;
 		saida_while = 5;
@@ -66,17 +66,17 @@ for(int i = 0; i < quantidadeJogadores; i++){
 	}	
 	
 	std::cout<< "Jogador:" << listaDeJogadores[i].getNumeroJogador() << " vai jogar ? caso jogue digite 1, caso queira parar digite 2!" << std::endl;
-	std::cin>>controlador;
+	std::cin>>controlador; // atribuindo um inteiro que represnta a ação do jogador em relação ao jogo.
 
 	if(controlador == 1){
 		std::cout<< "Jogador:" << listaDeJogadores[i].getNumeroJogador() << " Lançou os dados: " <<  duplo.first << "/" << duplo.second << std::endl;
 		std::this_thread::sleep_for (std::chrono::seconds(1));
-		listaDeJogadores[i].acumuloDePontos(duplo.first,duplo.second);
+		listaDeJogadores[i].acumuloDePontos(duplo.first,duplo.second); // chamando o método acumuloDePontos
 	}
 
 	std::cout<<" O jogador: "<< listaDeJogadores[i].getNumeroJogador()<< " -- Valor de pontos do jogador: " << listaDeJogadores[i].getPontosJogador() << std::endl;
 
-	switch(mecanica(listaDeJogadores[i])){
+	switch(mecanica(listaDeJogadores[i])){ // controle de retornos do método mecanica
 		case 1:
 			std::cout << "O jogo acabou !!" <<std::endl;
 			saida_while = 5;
@@ -84,7 +84,7 @@ for(int i = 0; i < quantidadeJogadores; i++){
 			break;
 			
 		case 2:
-			quantidadeJogadores --;
+			quantidadeJogadores --; // incrementa -1 caso um jogador ultrapasse o valor para gnhar o jogo
 			break;
 	}
 }
