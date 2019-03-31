@@ -1,6 +1,6 @@
 #ifndef jogador_h
 #define jogador_h
-#include "jogo.h"
+#include <vector>
 
 class Jogador{
 
@@ -14,13 +14,15 @@ public:
 
 	Jogador(const Jogador &jogador); // construto cópia.
 
-	Jogador(int numero, int pontos); // construto parametizado. 
+	Jogador(int numero, int pontos);  
 
-	int setPontosJogador(int pontos);
+	void setPontosJogador(int pontos);
 
-	void getPontosJogador();
+	int getPontosJogador();
 
-	void getNumeroJogador();
+	int getNumeroJogador();
+
+	int acumuloDePontos(int dado1, int dado2);
 
 };
 

@@ -1,39 +1,29 @@
 #include <iostream> 
 #include "jogador.h" //incluido biblioteca "jogo.h" para utilizar sua funções.
+#include "jogo.h"
+#include "dado.h"
 
 int Jogo::valorGanhador = 20;  //atribuindo valor a variável estática pertecente a classe jogo.
 
 int main(){
 	
-	Dado dados(1,6);
+	int nJogadores = 0; //variavel responsavel por guaradar quantidade de sapos
 
-	int dado1=0,dado2=0;
+	Jogo game;
 
-	LancamentoDuplo duplo= dados.lancamento2();
+	std::cout<< "Quantidade de jogadores:" << std::endl; // pedindo quantiade de sapos
+	std::cin >> nJogadores; // recebendo variavel
 
-	vector <Jogo> listaJogo;
+	int vetorJogadores[nJogadores]; // vetor com os nome dos sapos que seu tamanho é determinado pelo 
 
-	listaJogo.emplace_back(1,0);
-	listaJogo.emplace_back(2,0);
-	listaJogo.emplace_back(3,0);
-
-
-
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < nJogadores; ++i)
 	{
-		ponteiroDeJogo = &listaJogo[i];
-		std::cout<<"Lançamento do jogador:"<<ponteiroDeJogo->getNumeroJogador() << dado1 = duplo.first << "/"<< dado2 = duplo.second << std::endl;
-		acumuloDePontos(dado1,dado2);
-		//mecanica(listaJogo[i].acumuloDePontos(),ponteiroDeJogo);
-		std::cout<<"Numero de pontos do jogador "<< ponteiroDeJogo->getNumeroJogador()<< ":" << listaJogo[i].pontosJogador << std::endl;
+		std::cout << "Digite o numero do jogador " <<  i+1 << " :" << std::endl;
+		std::cin >> vetorJogadores[i];
+		game.adicionarJogador(vetorJogadores[i]); 
 	}
 
-
-
-
-	
-
-
+	game.interface(nJogadores);
 
 	return 0;
 }

@@ -3,22 +3,21 @@
 
 #include <vector>
 #include "jogador.h"
-
+#include "dado.h" 
 class Jogo{
 
 private:
-	Jogador *ponteiroJogador = new Jogador; 
-	vector<Jogador> listaDeJogadores;
-
+	std::vector<Jogador> listaDeJogadores;
 public:
+
 
 	static int valorGanhador; // vaŕiável estática
 
-	Jogo(); // construto padrão.
+	void adicionarJogador(int numeroJogador);
 
-	Jogo(const Jogo &jogo); // construto cópia.
+	int mecanica(Jogador verificarJogador);
 
-	Jogo(int numeroJogador, int pontosJogador); // construto parametizado. 
+	int interface(int quantidadeJogadores);
 
 };
 
