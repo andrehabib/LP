@@ -5,7 +5,6 @@
 #include <iostream>
 #include <utility>
 
-typedef std::pair<int, int> LancamentoDuplo;
 
  class Dado{
 
@@ -34,10 +33,6 @@ typedef std::pair<int, int> LancamentoDuplo;
 	int lancamento()
 	{
 		return std::round( Distribuicao(Gerador) );	
-	}
-
-	LancamentoDuplo lancamento2(){
-		return LancamentoDuplo(std::make_pair(lancamento(), lancamento()));
 	}
 
  };

@@ -51,7 +51,8 @@ int saida_while = 0; // controlador de saida
 
 Dado dados(1,6); // construto de dado para limitar os extremos
 
-LancamentoDuplo duplo = dados.lancamento2(); // criando variável do tipo LancamentoDuplo e chamando a função apra lançar os dados
+int dado1 = 0;
+int dado2 = 0;
 
 while(saida_while!= 5){	 
 
@@ -69,9 +70,9 @@ for(int i = 0; i < quantidadeJogadores; i++){
 	std::cin>>controlador; // atribuindo um inteiro que represnta a ação do jogador em relação ao jogo.
 
 	if(controlador == 1){
-		std::cout<< "Jogador:" << listaDeJogadores[i].getNumeroJogador() << " Lançou os dados: " <<  duplo.first << "/" << duplo.second << std::endl;
+		std::cout<< "Jogador:" << listaDeJogadores[i].getNumeroJogador() << " Lançou os dados: " <<  (dado1 = dados.lancamento()) << "/" << (dado2 = dados.lancamento()) << std::endl;
 		std::this_thread::sleep_for (std::chrono::seconds(1));
-		listaDeJogadores[i].acumuloDePontos(duplo.first,duplo.second); // chamando o método acumuloDePontos
+		listaDeJogadores[i].acumuloDePontos(dado1,dado2); // chamando o método acumuloDePontos
 	}
 
 	std::cout<<" O jogador: "<< listaDeJogadores[i].getNumeroJogador()<< " -- Valor de pontos do jogador: " << listaDeJogadores[i].getPontosJogador() << std::endl;
