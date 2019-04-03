@@ -14,9 +14,11 @@ private:
 	string editora;
 	int ano;
 	string isbn;
+	int exemplares;
+	int disponiveis;
 
 public:
-	Livro(string titulo_, string autor_, string edicao_,string editora_, int ano_,string isbn_);
+	Livro(string titulo_, string autor_, string edicao_, string editora_, int ano_, string isbn_, int exemplares_, int disponiveis_);
 	string getTitulo();
 	void setTitulo(string titulo_);
 	string getAutor();
