@@ -4,7 +4,7 @@
 
 #include <iostream> 
 #include <string>
-#include "dado.h"
+#include "dado.h" //recebe a bib lioteca dado.h
 
 
 class Sapo{

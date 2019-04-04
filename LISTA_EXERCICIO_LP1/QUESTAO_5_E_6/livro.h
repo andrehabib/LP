@@ -31,15 +31,20 @@ public:
 	void setAno(int ano_);
 	string getIsbn();
 	void setIsbn(string isbn_);
+	int getExemplares();
+	void setExemplares(int exemplares_);
+	int getDisponiveis();
+	void setDisponiveis(int disponiveis_);
 
-	friend std::ostream& operator<<(std::ostream &saida, const Livro& l);
 
-};
-
-	std::ostream& operator<<(std::ostream &saida, const Livro& l){
-		saida << "Titulo: " << l.titulo << " Autor: " << l.autor << " Edição: " << l.edicao << " Ano : " << l.ano << " Isbn: " << l.isbn;
+	friend std::ostream& operator<<(std::ostream &saida, const Livro& l){
+		saida << "Titulo: " << l.titulo << "/ Autor: " << l.autor << "/ Edição: " << l.edicao << "/ Ano : " << l.ano << "/ Isbn: " << l.isbn;
 
 		return saida;
 	}
+
+};
+
+		
 	
 #endif

@@ -52,9 +52,27 @@ int Livro::getAno(){
 void Livro::setAno(int ano_){
 	ano = ano_;
 }
+
 string Livro::getIsbn(){
 	return isbn;
 }
+
 void Livro::setIsbn(string isbn_){
 	isbn = isbn_;
+}
+
+int Livro::getExemplares(){
+	return exemplares;
+}
+
+void Livro::setAno(int exemplares_){
+	exemplares = exemplares_;
+}
+
+int Livro::getDisponiveis(){
+	return disponiveis;
+}
+
+void Livro::setAno(int disponiveis_){
+	disponiveis = disponiveis_;
 }
