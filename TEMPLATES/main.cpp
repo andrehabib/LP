@@ -4,11 +4,12 @@
 
 int main(){
 
-	Conjunto<int> lista;
-	lista.add(12);
-	lista.add(15);
-	lista.add(20);
-	lista.add(50);
+	Conjunto <int> lista;
+
+	lista.adicionar(12);
+	lista.adicionar(15);
+	lista.adicionar(20);
+	lista.adicionar(50);
 	
 	
 	return 0;

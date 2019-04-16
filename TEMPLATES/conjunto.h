@@ -4,7 +4,6 @@
 #include <vector>
 
 template <typename T>
-
 class Conjunto {
 private:
 
@@ -19,6 +18,9 @@ public:
 	int total();
 
 	Conjunto operator+(Conjunto &a);
+	Conjunto operator*(Conjunto &a);
+	Conjunto operator-(Conjunto &a);
 
 
 };
+
