@@ -17,8 +17,8 @@ Produto::Produto(void){}
 * @param  m_codigo, m_descricao, m_preco.
 * @return Não possui retorno
 */
-Produto::Produto(double codigo_de_barras, std::string descricao, double preco ): m_codigo_de_barras(codigo_de_barras), 
-m_descricao(descricao), m_preco(preco){}
+Produto::Produto(double codigo_de_barras, std::string descricao, double preco, int tipo ): m_codigo_de_barras(codigo_de_barras), 
+m_descricao(descricao), m_preco(preco), m_tipo(tipo){}
 
 /**
 * @brief Método destrutor.
@@ -61,6 +61,9 @@ Produto::~Produto(){}
 	void Produto::setM_preco(double preco_){
 		m_preco = preco_;
 	}
+	void Produto::setM_tipo(int tipo_){
+		m_tipo = tipo_;
+	}
 
 /** @brief Getters */
 	double Produto::getM_codigo(){
@@ -71,5 +74,8 @@ Produto::~Produto(){}
 	}
 	double Produto::getM_preco(){
 		return m_preco;
+	}
+	int Produto::getM_tipo(){
+		return m_tipo;
 	}
 	

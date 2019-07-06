@@ -17,8 +17,8 @@ Bebida::Bebida(void){}
 * @param  m_codigo_de_barra, m_descricao, m_preco, m_teor.
 * @return Não possui retorno
 */
-Bebida::Bebida(double m_codigo_de_barras, string m_descricao, double m_preco, double m_teor_alcoolico):
-	Produto(m_codigo_de_barras, m_descricao, m_preco), m_teor_alcoolico(m_teor_alcoolico) {}
+Bebida::Bebida(double m_codigo_de_barras, string m_descricao, double m_preco, int m_tipo, double m_teor_alcoolico):
+	Produto(m_codigo_de_barras, m_descricao, m_preco, m_tipo), m_teor_alcoolico(m_teor_alcoolico) {}
 
 /**
 * @brief Método destrutor.
@@ -64,3 +64,4 @@ void Bebida::imprime(){
 	double Bebida::getM_teor(){
 		return m_teor_alcoolico;
 	}
+

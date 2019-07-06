@@ -32,7 +32,7 @@ protected:
 
 	/** @brief Implementação do método virtual sobrecarga de impressão */ 
 	std::ostream& print(std::ostream& os) const {
-		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_data_do_lote << ";" << m_validade << "]" << endl;
+		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_tipo << ";" << m_data_do_lote << ";" << m_validade << ";" << endl;
 	}
 
 		
@@ -41,7 +41,7 @@ public:
 	Fruta(void);
 
 	/** @brief Definindo construtor padronizado da classe Fruta */ 
-	Fruta(double, string, double, Date, Date);
+	Fruta(double, string, double, int, Date, Date);
 
 	/** @brief Definindo destrutor da classe Fruta */ 
 	~Fruta();
@@ -56,7 +56,7 @@ public:
 	void setM_preco(double preco_);
 	void setM_data(Date data_);
 	void setM_validade(Date validade_);
-
+	void setM_tipo(int tipo_);
 	
 	/** @brief Getters */
 	double getM_codigo();
@@ -64,6 +64,8 @@ public:
 	double getM_preco();
 	Date getM_data();
 	Date getM_validade();
+	double getM_teor();
+	int getM_tipo();
 };
 
 #endif

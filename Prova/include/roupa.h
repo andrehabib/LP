@@ -23,7 +23,7 @@ protected:
 	std::string m_marca;
 
 	/** @brief Define a variável chamada m_sexo tipo char */
-	char m_sexo;
+	std::string m_sexo;
 
 	/** @brief Define a variável chamada m_tamanho tipo double */
 	std::string m_tamanho;
@@ -32,8 +32,8 @@ protected:
 
 	/** @brief Implementação do método virtual sobrecarga de impressão */ 
 	std::ostream& print(std::ostream& os) const {
-		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_marca << ";" << m_sexo 
-		<< ";" << m_tamanho << "]" << endl;
+		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_tipo << ";" << m_marca << ";" << m_sexo 
+		<< ";" << m_tamanho << ";" << endl;
 	}
 
 		
@@ -42,7 +42,7 @@ public:
 	Roupa(void);
 
 	/** @brief Definindo construtor padronizado da classe Roupa */ 
-	Roupa(double, string, double, string, char, string);
+	Roupa(double, string, double, int, string, string, string);
 
 	/** @brief Definindo destrutor da classe Roupa */ 
 	~Roupa();
@@ -56,17 +56,17 @@ public:
 	void setM_descricao(string descricao_);
 	void setM_preco(double preco_);
 	void setM_marca(string marca_);
-	void setM_sexo(char sexo_);
+	void setM_sexo(string sexo_);
 	void setM_tamanho(string tamanho_);
-	
+	void setM_tipo(int tipo_);
 	/** @brief Getters */
 	double getM_codigo();
 	string getM_descricao();
 	double getM_preco();
 	string getM_marca();
-	char getM_sexo();
+	string getM_sexo();
 	string getM_tamanho();
-
+	int getM_tipo();
 };
 
 #endif

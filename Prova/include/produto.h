@@ -33,13 +33,16 @@ protected:
 	/** @brief Define uma variável chamdada m_preco do tipo double para armazenar o valor de um produto */
 	double m_preco;
 
+	/** @brief Define uma variável chamdada m_preco do tipo double para armazenar o valor de um produto */
+	int m_tipo;
+
 	public:
 
 	/** @brief Define o construtor padrão de Produto com o parâmetro void, pois não utilizaremos o construtor padrão */
 	Produto(void);
 
 	/** @brief Define o construtor padronizado de Produto */
-	Produto(double, string, double);
+	Produto(double, string, double , int );
 
 	/** @brief Definindo um método virtual */
 	virtual ~Produto();
@@ -64,11 +67,13 @@ protected:
 	void setM_codigo(double codigo);
 	void setM_descricao(string descricao_);
 	void setM_preco(double preco_);
+	void setM_tipo(int tipo_);
 
 	/** @brief Getters */
 	double getM_codigo();
 	string getM_descricao();
 	double getM_preco();
+	int getM_tipo();
 
 
 };

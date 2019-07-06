@@ -17,8 +17,8 @@ Fruta::Fruta(void){}
 * @param  m_codigo_de_barra, m_descricao, m_preco, m_teor.
 * @return Não possui retorno
 */
-Fruta::Fruta(double m_codigo_de_barras, string m_descricao, double m_preco, Date m_data_do_lote, Date m_validade):
-	Produto(m_codigo_de_barras, m_descricao, m_preco), m_data_do_lote(m_data_do_lote), m_validade(m_validade) {}
+Fruta::Fruta(double m_codigo_de_barras, string m_descricao, double m_preco, int m_tipo, Date m_data_do_lote, Date m_validade):
+	Produto(m_codigo_de_barras, m_descricao, m_preco, m_tipo), m_data_do_lote(m_data_do_lote), m_validade(m_validade) {}
 
 /**
 * @brief Método destrutor.
@@ -51,6 +51,9 @@ void Fruta::imprime(){
 	void Fruta::setM_validade(Date validade_){
 		m_validade = validade_;
 	}
+	void Fruta::setM_tipo(int tipo_){
+		m_tipo = tipo_;
+	}
 
 
 
@@ -70,4 +73,7 @@ void Fruta::imprime(){
 	}
 	Date Fruta::getM_validade(){
 		return m_validade;
+	}
+	int Fruta::getM_tipo(){
+		return m_tipo;
 	}

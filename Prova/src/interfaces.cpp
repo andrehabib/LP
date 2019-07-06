@@ -5,11 +5,21 @@
 
 #include "../include/interfaces.h"
 
+
+#include <string>
+
+#include <sstream>
+
+#include <cstdio>
+
 Interfaces::Interfaces(void){}
 
+/** @brief Definindo menu de interação com o usuário */
 void Interfaces::menu(){
 
 	int op=0;
+
+	
 
 	while(op!= 4){
 		std::cout << "Escolha uma opção abaixo" << std::endl;
@@ -23,6 +33,7 @@ void Interfaces::menu(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
+	/** @brief Controla os serviços do sistema */
 	switch(op){
 	case 1: 
 
@@ -32,7 +43,7 @@ void Interfaces::menu(){
 
 	case 2:
 
-			//remover();
+		remover();
 
 		break;
 
@@ -51,7 +62,8 @@ void Interfaces::menu(){
 		return;
 	default:
 			std::cout << "Opção invalida" << std::endl;
-			menu();
+			std::cout << " Saindo do sistema ... " << std::endl;
+			return;
 			break;
 			
 	}
@@ -61,7 +73,6 @@ void Interfaces::menu(){
 void Interfaces::cadastro(){
 		int op = 0;
 
-	
 		std::cout << "Escolha um dos produtos abaixo ou retornar menu:" << std::endl;
 		std::cout << "1. Bebida: " << std::endl;
 		std::cout << "2. Roupa: " << std::endl;
@@ -86,12 +97,14 @@ void Interfaces::cadastro(){
 				break;
 
 			case 4:
-				std::cout << " VOLTANDO PARA O MENU ...!!" << std::endl;
-				std::cout << " VOLTANDO PARA O MENU ...!!" << std::endl;
+
+				std::cout << " Saindo do sistema ... " << std::endl;
 
 				std::cout << " " << std::endl;
 				std::cout << " " << std::endl;
-				menu();
+				return;
+
+
 				break;
 
 			default:
@@ -100,7 +113,13 @@ void Interfaces::cadastro(){
 				std::cout << " " << std::endl;
 				std::cout << " " << std::endl;
 
-				cadastro();
+				std::cout << " Saindo do sistema ... " << std::endl;
+
+				std::cout << " " << std::endl;
+				std::cout << " " << std::endl;
+				return;
+
+
 		}
 	
 	
@@ -125,15 +144,19 @@ void Interfaces::cadastrarBebida(){
 		double porcento = 0;
 		porcento = preco/100;
 
+		tipo = 1;
+
+		it = loja.find(codigo_de_barras);
+
 		if(it != loja.end()){
 			std::cout << " Já existe um produto com esse codigo de barras!! " << std::endl;
-			cadastrarRoupa();
+			cadastrarBebida();
 		}
 		else{
 		/** @brief Instancia um objeto bebida */
-		Bebida ProdutoBebida(codigo_de_barras, descricao, preco, porcento);
+		Bebida ProdutoBebida(codigo_de_barras, descricao, preco, tipo, porcento);
 		
-		loja.insert(pair<double,Produto*>(codigo_de_barras, new Bebida(codigo_de_barras, descricao, preco, porcento)));
+		loja.insert(pair<double,Produto*>(codigo_de_barras, new Bebida(codigo_de_barras, descricao, preco, tipo, porcento)));
 
 		/** @brief Criação da variável ofstream para escrever a bebida no arquivo lojas.txt*/
 		
@@ -143,14 +166,16 @@ void Interfaces::cadastrarBebida(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
-		std::cout << " VOLTANDO PARA O MENU DE CADASTRO ...!!" << std::endl;
-		std::cout << " VOLTANDO PARA O MENU DE CADASTRO ...!!" << std::endl;
-
-		std::cout << " " << std::endl;
-		std::cout << " " << std::endl;
-
 		arquivoS << ProdutoBebida;
-		arquivoS<< "\n";
+
+		fecharArquivo();
+
+		std::cout << " Saindo do sistema ... " << std::endl;
+
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
+
+		return;
 
 
 
@@ -159,18 +184,19 @@ void Interfaces::cadastrarBebida(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
-		cadastro();
-
-		}
-
 		/** @brief Fechando o arquivo através do método fecharArquivo */
 		fecharArquivo();
 
-		/** @brief Liberando a memória */
-		
-		arquivoS.open("loja.txt", ios::app);
+		std::cout << " Saindo do sistema ... " << std::endl;
 
-		cadastro();
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
+
+		return;
+
+
+		}
+
 	}
 }
 
@@ -192,6 +218,7 @@ void Interfaces::cadastrarRoupa(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
+		tipo = 2;
 		it = loja.find(codigo_de_barras);
 
 		if(it != loja.end()){
@@ -200,9 +227,9 @@ void Interfaces::cadastrarRoupa(){
 		}
 		else{
 		/** @brief Instancia um objeto roupa */
-		Roupa ProdutoRoupa(codigo_de_barras, descricao, preco, marca, sexo, tamanho);
+		Roupa ProdutoRoupa(codigo_de_barras, descricao, preco, tipo, marca, sexo, tamanho);
 
-		loja.insert(pair<double,Produto*>(codigo_de_barras, new Roupa(codigo_de_barras, descricao, preco, marca, sexo, tamanho)));
+		loja.insert(pair<double,Produto*>(codigo_de_barras, new Roupa(codigo_de_barras, descricao, tipo, preco, marca, sexo, tamanho)));
 
 		/** @brief Criação da variável ofstream para escrever a bebida no arquivo lojas.txt*/
 	
@@ -221,7 +248,7 @@ void Interfaces::cadastrarRoupa(){
 		std::cout << " " << std::endl;
 
 		arquivoS << ProdutoRoupa;
-		arquivoS<< "\n";
+
 
 
 
@@ -230,18 +257,18 @@ void Interfaces::cadastrarRoupa(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
-		cadastro();
-
-		}
-
 		/** @brief Fechando o arquivo através do método fecharArquivo */
 		fecharArquivo();
 
-		/** @brief Liberando a memória */
-		
-		arquivoS.open("loja.txt", ios::app);
+		std::cout << " Saindo do sistema ... " << std::endl;
 
-		cadastro();
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
+
+		return;
+
+		}
+
 	}
 }
 
@@ -273,6 +300,8 @@ void Interfaces::cadastrarFruta(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
+		tipo = 3;
+
 		it = loja.find(codigo_de_barras);
 
 		if(it != loja.end()){
@@ -281,9 +310,9 @@ void Interfaces::cadastrarFruta(){
 		}
 		else{
 		/** @brief Instancia um objeto fruta */
-		Fruta ProdutoFruta(codigo_de_barras, descricao, preco, data, validade);
+		Fruta ProdutoFruta(codigo_de_barras, descricao, preco, tipo, data, validade);
 
-		loja.insert (pair<double,Produto*>(codigo_de_barras, new Fruta(codigo_de_barras, descricao, preco, data, validade)));
+		loja.insert (pair<double,Produto*>(codigo_de_barras, new Fruta(codigo_de_barras, descricao, preco, tipo, data, validade)));
 
 
 	
@@ -296,16 +325,17 @@ void Interfaces::cadastrarFruta(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
-		std::cout << " VOLTANDO PARA O MENU DE CADASTRO ...!!" << std::endl;
-		std::cout << " VOLTANDO PARA O MENU DE CADASTRO ...!!" << std::endl;
-
-		std::cout << " " << std::endl;
-		std::cout << " " << std::endl;
-
 		arquivoS << ProdutoFruta;
-		arquivoS<< "\n";
+	
 
+		/** @brief Fechando o arquivo através do método fecharArquivo */
+		fecharArquivo();
+		
 
+		std::cout << " Saindo do sistema ... " << std::endl;
+
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
 
 		}else{
 		std::cout << " Não foi possivel cadastrar a fruta! " << std::endl;
@@ -313,18 +343,22 @@ void Interfaces::cadastrarFruta(){
 		std::cout << " " << std::endl;
 		std::cout << " " << std::endl;
 
-		cadastro();
+		/** @brief Fechando o arquivo através do método fecharArquivo */
+		fecharArquivo();
+		
+
+		std::cout << " Saindo do sistema ... " << std::endl;
+
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
+
+		return;
 
 		}
 
-		/** @brief Fechando o arquivo através do método fecharArquivo */
-		fecharArquivo();
+	
 
-		/** @brief Liberando a memória */
-		
-		arquivoS.open("loja.txt", ios::app);
-
-		cadastro();
+	
 		}
 
 		
@@ -334,9 +368,14 @@ void Interfaces::cadastrarFruta(){
 void Interfaces::fecharArquivo(){
 	arquivoE.close();
 	arquivoS.close();
+	arquivoC.close();
 }
 
+/** @details Método responsável por receber um codigo de barras e logo em seguida apagar o determinado produto da memória
+ depois excluir o antigo arquivo de estoque para criar um novo sem aquele*/
 void Interfaces::remover(){
+
+	
 	int op = 0;
 
 	std::cout << " " << std::endl;
@@ -344,63 +383,64 @@ void Interfaces::remover(){
 
 	std::cout << "Escolha uma das opções abaixo: " << std::endl;
 	std::cout << "1. Remover produto:" << std::endl;
-	std::cout << "2. Retornar para menu:" << std::endl;
+	std::cout << "2. Sair do programa:" << std::endl;
 	cin >> op;
 
 	std::cout << " " << std::endl;
 	std::cout << " " << std::endl;
 
 
-	switch(op){
-		case 1:
-			std::cout << "Digite o codigo de barras do produto que deseja remover " << std::endl;
-			cin >> codigo_de_barras;
+	if(op == 1){
 
+		std::cout << "Digite o codigo de barras do produto que deseja remover " << std::endl;
+		cin >> codigo_de_barras;
+
+		std::cout << " " << std::endl;
+		std::cout << " " << std::endl;
+
+		it = loja.find(codigo_de_barras);
+
+		loja.erase(codigo_de_barras);
+
+		if(it == loja.end()){
+			std::cout << "Foi removido com sucesso " << std::endl;
 			std::cout << " " << std::endl;
 			std::cout << " " << std::endl;
 
+			remove("loja.txt");
+		
 
-			loja.erase(codigo_de_barras);
+		for(auto it:loja){
+			arquivoS.open("loja.txt", ios::app);
+			arquivoS << *it.second;
+		}
+			fecharArquivo();
+		}
 
-			it = loja.find(codigo_de_barras);
+			
 
-			if(it == prod.end()){
-				std::cout << "Digite o codigo de barras do produto que deseja remover " << std::endl;
-				std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
-
-			}
-
-			break;
-
-		case 2:
-
-			std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
-
-			std::cout << " VOLTANDO PARA O MENU...!!" << std::endl;
-			std::cout << " VOLTANDO PARA O MENU...!!" << std::endl;
-
-			std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
-
-			menu();
-			break;
-
-		default:
-
-			std::cout << " Opção inválida!!" << std::endl;
-
-			std::cout << " " << std::endl;
-			std::cout << " " << std::endl;
-
-			remover();
+		
 
 	}
+	else{
+		/** @brief Fechando o arquivo através do método fecharArquivo */
+			fecharArquivo();
+		
 
+			std::cout << " Saindo do sistema ... " << std::endl;
+
+			std::cout << " " << std::endl;
+			std::cout << " " << std::endl;
+
+	}
+			
+		
 }
 
+/** @brief Método responsável por ler o arquivo e listar as informações contidas nele*/
 void Interfaces::listar(){
+
+		
 		arquivoE.open("loja.txt");
 
 		
@@ -411,6 +451,8 @@ void Interfaces::listar(){
 			while(getline(arquivoE, linha)){
 				std::cout << linha << std::endl;
 			}
+			std::cout << " " << std::endl;
+			std::cout << " " << std::endl;
 			fecharArquivo();
 		}
 		else{
@@ -419,15 +461,91 @@ void Interfaces::listar(){
 			std::cout << " " << std::endl;
 			std::cout << " " << std::endl;
 
-			std::cout << " VOLTANDO PARA O MENU ...!!" << std::endl;
-			std::cout << " VOLTANDO PARA O MENU ...!!" << std::endl;
+			/** @brief Fechando o arquivo através do método fecharArquivo */
+			fecharArquivo();
+		
 
+			std::cout << " Saindo do sistema ... " << std::endl;
 
 			std::cout << " " << std::endl;
 			std::cout << " " << std::endl;
 
-			menu();
+
 		}
+
+
+}
+
+/** @brief Método responsável por carregar os arquivos para a mémoria*/
+void Interfaces::carregarMemoria(){
+
+	arquivoS.open("loja.txt", ios::app);
+	arquivoC.open("loja.txt");
+
+
+	std::string campo1,campo2, campo3, campo4, campo5, campo6, campo7,campo8, campo9,campo10;
+	double campoid,campopreco,campoteor;
+	int dia1,mes1,ano1,dia1_,mes1_,ano1_,campotipo;
+
+	std::string arquivo; 
+
+	/** @brief Leitura do arquivo para pegas os atributos de cada produto especifico */
+	while(getline(arquivoC, linha)){
+		stringstream ss(linha);
+		getline(ss, campo1,';');
+		campoid = stoi(campo1);
+		getline(ss, campo2,';');
+		getline(ss, campo3,';');
+		campopreco = stoi(campo3);
+		getline(ss, campo4,';');
+
+		/** @brief Espicifica o produto que vai ser lido apra seus determinados construtores */
+		campotipo = stoi(campo4);
+
+		if(campotipo == 1){
+			getline(ss, campo5,';');
+			campoteor = stoi(campo5);
+
+			loja.insert(pair<double,Produto*>(campoid, new Bebida(campoid,campo2,campopreco,campotipo,campoteor)));
+				
+		}
+		if(campotipo == 2){
+			
+			getline(ss, campo5,';');
+			getline(ss, campo6,';');
+			getline(ss, campo7,';');
+
+			loja.insert(pair<double,Produto*>(campoid, new Roupa(campoid,campo2,campopreco,campotipo,campo5,campo6,campo7)));
+					fecharArquivo();
+		}
+				
+		if(campotipo == 3){
+			getline(ss, campo5,'/');
+			dia1 = stoi(campo5);
+			getline(ss, campo6,'/');
+			mes1 = stoi(campo6);
+			getline(ss, campo7,';');
+			ano1 = stoi(campo7);
+			Date Data1(dia1,mes1,ano1);
+
+			getline(ss, campo8,'/');
+			dia1_ = stoi(campo8);
+			getline(ss, campo9,'/');
+			mes1_ = stoi(campo9);
+			getline(ss, campo10,';');
+			ano1_ = stoi(campo10);
+			Date Validade1(dia1_,mes1_,ano1_);
+			loja.insert(pair<double,Produto*>(campoid, new Fruta(campoid,campo2,campopreco,campotipo,Data1,Validade1)));
+				
+		}	
+		else{
+			std::cout << " Deu erro ... " << std::endl;
+
+			std::cout << " " << std::endl;
+			std::cout << " " << std::endl;
+		}
+	}
+
 
 
 }

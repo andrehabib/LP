@@ -17,8 +17,8 @@ Roupa::Roupa(void){}
 * @param  m_codigo_de_barra, m_descricao, m_preco, m_marca, m_sexo, m_tamanho.
 * @return Não possui retorno
 */
-Roupa::Roupa(double m_codigo_de_barras, string m_descricao, double m_preco, string m_marca, char m_sexo, string m_tamanho):
-	Produto(m_codigo_de_barras, m_descricao, m_preco), m_marca(m_marca), m_sexo(m_sexo), m_tamanho(m_tamanho) {}
+Roupa::Roupa(double m_codigo_de_barras, string m_descricao, double m_preco, int m_tipo, string m_marca, string m_sexo, string m_tamanho):
+	Produto(m_codigo_de_barras, m_descricao, m_preco, m_tipo), m_marca(m_marca), m_sexo(m_sexo), m_tamanho(m_tamanho) {}
 
 /**
 * @brief Método destrutor.
@@ -48,11 +48,14 @@ void Roupa::imprime(){
 	void Roupa::setM_marca(string marca_){
 		m_marca = m_marca;
 	}
-	void Roupa::setM_sexo(char sexo_){
+	void Roupa::setM_sexo(string sexo_){
 		m_sexo = m_sexo;
 	}
 	void Roupa::setM_tamanho(string tamanho_){
 		m_tamanho = m_tamanho;
+	}
+	void Roupa::setM_tipo(int tipo_){
+		m_tipo = tipo_;
 	}
 
 
@@ -70,9 +73,13 @@ void Roupa::imprime(){
 	string Roupa::getM_marca(){
 		return m_marca;
 	}
-	char Roupa::getM_sexo(){
+	string Roupa::getM_sexo(){
 		return m_sexo;
 	}
 	string Roupa::getM_tamanho(){
 		return m_tamanho;
 	}
+	int Roupa::getM_tipo(){
+		return m_tipo;
+	}
+	

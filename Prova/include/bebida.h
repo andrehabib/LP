@@ -26,7 +26,7 @@ protected:
 
 	/** @brief Implementação do método virtual sobrecarga de impressão */ 
 	std::ostream& print(std::ostream& os) const {
-		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_teor_alcoolico << "]" << endl;
+		return os << m_codigo_de_barras << ";" << m_descricao << ";" << m_preco << ";" << m_tipo << ";" << m_teor_alcoolico << ";" << endl;
 	}
 
 		
@@ -35,7 +35,7 @@ public:
 	Bebida(void);
 
 	/** @brief Definindo construtor padronizado da classe Bebida */ 
-	Bebida(double, string, double, double);
+	Bebida(double, string, double, int, double);
 
 	/** @brief Definindo destrutor da classe Bebida */ 
 	~Bebida();
@@ -48,13 +48,14 @@ public:
 	void setM_descricao(string descricao_);
 	void setM_preco(double preco_);
 	void setM_teor(double teor);
+	
 
 	/** @brief Getters */
 	double getM_codigo();
 	string getM_descricao();
 	double getM_preco();
 	double getM_teor();
-
+	
 };
 
 #endif

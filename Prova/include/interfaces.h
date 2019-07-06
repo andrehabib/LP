@@ -39,13 +39,15 @@ private:
 	double preco;
 	double teor_alcoolico;
 	std::string marca;
-	char sexo;
+	std::string sexo;
 	std::string tamanho;
 	std::string linha;
 	ofstream arquivoS;
 	ifstream arquivoE;
+	ifstream arquivoC;
 	std::map<double,Produto*> loja;
 	std::map<double,Produto*>::iterator it;
+	int tipo;
 
 public:
 	/** @brief Definindo construtor padrão da classe Interfaces para void, pois não utilizaremos */ 
@@ -71,6 +73,7 @@ public:
 	void cadastrarFruta();
 
 	void cadastrarRoupa();
+	void carregarMemoria();
 };
 
 #endif
